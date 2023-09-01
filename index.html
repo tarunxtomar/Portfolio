@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <title>Personal Portfolio</title>
+    <style>
+        /* default */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        p {
+            color: rgb(85, 85, 85);
+        }
+
+        a,
+        .btn {
+            transition: all 300ms ease;
+        }
+
+        /* nav bar */
+        nav,
+        .nav-links {
+            display: flex;
+        }
+        .logo-main{
+            background: linear-gradient(to right,#ff3333, rgb(128, 107, 241));
+            background-size: cover;
+            background-position: center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 2.25rem;
+            font-weight: 600;
+        }
+
+        nav {
+            justify-content: space-around;
+            align-items: center;
+            height: 17vh;
+        }
+
+        .nav-links {
+            font-size: 1.5rem;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: grey;
+            text-decoration: underline grey;
+            text-underline-offset: 1rem;
+            text-decoration-color: rgb(181, 181, 181);
+        }
+
+        .logo {
+            font-size: 2rem;
+        }
+
+        .logo:hover {
+            cursor: default;
+        }
+
+        /* intro nav */
+        .hamburger-nav {
+            display: none;
+        }
+
+        .hamburger-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hamburger-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 24px;
+            width: 30px;
+            cursor: pointer;
+        }
+
+        .hamburger-icon span {
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            transition: all 0.3 ease-in-out;
+        }
+
+        .menu-links {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            /* color: black; */
+            width: fit-content;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3 ease-in-out;
+        }
+
+        .menu-links a {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            font-size: 1rem;
+            color: black;
+            text-transform: none;
+            transition: all 0.3 ease-in-out;
+        }
+
+        .menu-links li {
+            list-style: none;
+        }
+
+        .menu-links.open {
+            max-height: 300px;
+        }
+
+        .hamburger-icon.open span:first-child {
+            transform: rotate(45deg) translate(10px, 5px);
+        }
+
+        .hamburger-icon.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-icon.open span:last-child {
+            transform: rotate(-45deg) translate(10px, -5px);
+        }
+
+        .hamburger-icon span:first-child {
+            transform: none;
+        }
+
+        .hamburger-icon span:first-child {
+            opacity: 1;
+        }
+
+        .hamburger-icon span:first-child {
+            transform: none;
+        }
+
+        /*all section */
+        section {
+            height: 96vh;
+            min-height: fit-content;
+            padding-top: 4vh;
+            margin: 0 10rem;
+            box-sizing: border-box;
+        }
+
+        .section-container {
+            display: flex;
+        }
+
+        /* profile sections */
+        #profile {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            height: 80vh;
+            cursor: default;
+        }
+        #profile .profile-pic-main:hover{
+            scale: 1.02;
+            transition: all ease 0.3s;
+            box-shadow: 6px 6px 9px rgb(53, 53, 53);
+        }
+
+        .section__pic-container {
+            display: flex;
+            height: 400px;
+            width: 400px;
+            margin: auto 0;
+        }
+
+        .section__text {
+            align-self: center;
+            text-align: center;
+        }
+
+        .section__text p {
+            font-weight: 600;
+        }
+
+        .section__text__p1 {
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .section__text__p2 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 3rem;
+            margin-top: 1rem;
+        }
+        #profile .title{
+            -webkit-text-stroke: 2px #000;
+            color: transparent;
+        }
+
+
+        .socials-container {
+            height: 2rem;
+            display: flex;
+            justify-content: center;
+            margin: 1rem;
+            gap: 1rem;
+        }
+
+        /* icons */
+        .icon {
+            cursor: pointer;
+            height: 2.5rem;
+            /* width: 1.5rem; */
+        }
+
+        /* buttons */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            font-weight: 600;
+            font-size: 0.7rem;
+            transition: all 300ms ease;
+            height: 2.75rem;
+            width: 6.75rem;
+            border-radius: 2rem;
+        }
+
+        .btn-color-1,
+        .btn-color-2 {
+            border: rgb(53, 53, 53) 0.1rem solid;
+        }
+
+        .btn-color-1:hover,
+        .btn-color-2:hover {
+            cursor: pointer;
+        }
+
+        .btn-color-1,
+        .btn-color-2:hover {
+            /* background-color: rgb(53, 53, 53); */
+            background-color: #ff3333;
+            border: none;
+            color: white;
+        }
+
+        .btn-color-1:hover {
+            /* background-color: rgb(0, 0, 0); */
+            background-color: #ff3333;
+            box-shadow: 3px 3px 10px #ff3333;
+        }
+
+        .btn-color-2 {
+            background: none;
+        }
+
+        .btn-color-2:hover {
+            /* border: rgb(255, 255, 255) 0.1rem solid; */
+            box-shadow: 3px 3px 10px #ff3333;
+        }
+
+        /* about section */
+        #about {
+            position: relative;
+        }
+
+        .about-containers {
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-details-container {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-containers,
+        .about-details-container {
+            display: flex;
+        }
+
+        .about-pic {
+            border-radius: 2rem;
+            margin-right: 1rem;
+            box-shadow: 4px 4px 10px rgb(53, 53, 53);
+        }
+
+        .arrow {
+            position: absolute;
+            right: -7rem;
+            bottom: 2.5rem;
+        }
+
+        .details-container {
+            padding: 1.5rem;
+            flex: 1;
+            background-color: white;
+            border-radius: 2rem;
+            border: rgb(53, 53, 53) 0.1rem solid;
+            border-color: rgb(163, 163, 163);
+            text-align: center;
+        }
+        .details-container:hover{
+            box-shadow: 4px 4px 10px rgb(53, 53, 53);
+        }
+
+        .section-container {
+            height: 80%;
+        }
+
+        .section__pic-container {
+            height: 400px;
+            width: 400px;
+            margin: auto 0;
+        }
+        .profile-pic-main{
+            border-radius: 50%;
+            box-shadow: 4px 4px 10px rgb(53, 53, 53);
+        }
+
+
+        /* experience section */
+        #experience {
+            position: relative;
+        }
+
+        .experience-sub-title {
+            color: rgb(85, 85, 85);
+            font-weight: 600;
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .experience-details-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .article-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            text-align: initial;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .article {
+            display: flex;
+            justify-content: space-around;
+            gap: 0.5rem;
+            width: 10rem;
+        }
+
+        .article-img {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .article .icon {
+            cursor: default;
+        }
+
+        /* project section */
+        #projects {
+            position: relative;
+        }
+
+        .color-container {
+            border-color: rgb(163, 163, 163);
+            background: rgb(250, 250, 250);
+        }
+
+        .project-img {
+            border-radius: 2rem;
+            height: 90%;
+            width: 90%;
+        }
+
+        .project-title {
+            margin: 1rem;
+            color: black;
+        }
+
+        .project-btn {
+            color: black;
+            border-color: rgb(163, 163, 163);
+        }
+
+        /* contact section */
+        #contact {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+
+        .contact-info-upper-container {
+            display: flex;
+            justify-content: center;
+            border-radius: 2rem;
+            border: rgb(53, 53, 53) 0.1rem solid;
+            border-color: rgb(163, 163, 163);
+            background-color: rgb(250, 250, 250);
+            margin: 2rem 0;
+            padding: 0.5rem;
+        }
+        .contact-info-upper-container:hover{
+            box-shadow: 3px 3px 10px rgb(53, 53, 53);
+        }
+
+        .contact-info-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.3rem;
+            margin: 1rem;
+        }
+
+        .contact-info-container p {
+            font-size: larger;
+        }
+
+        .contact-icon {
+            cursor: default;
+        }
+
+        .email-icon {
+            height: 3.2rem;
+        }
+
+        /* footer */
+        .footer {
+            height: 26vh;
+            margin: 0 1rem;
+        }
+
+        .footer-p {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* responsiveness */
+
+        @media screen and (max-width: 1400px){
+            #profile{
+                height: 83vh;
+                margin-bottom: 6rem;
+            }
+            .about-containers{
+                flex-wrap: wrap;
+            }
+        }
+        @media screen and (max-width: 1200px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .hamburger-nav {
+                display: flex;
+            }
+            .experience, .experience-details-container{
+                margin-top: 2rem;
+            }
+            #profile, .section-container{
+                display: block;
+            }
+            .arrow{
+                display: none;
+            }
+            section, .section-container{
+                height: fit-content;
+            }
+            section{
+                margin: 0 5%;
+            }
+            .section__pic-container{
+                height: 275px;
+                width: 275px;
+                margin: 0 auto 2rem;
+            }
+            .about-containers{
+                margin-top: 0;
+            }
+        }
+        @media screen and (max-width: 600px){
+            #contact, footer{
+                height: 40vh;
+            }
+            #profile{
+                height: 83vh;
+                margin-bottom: 0;
+            }
+            article{
+                font-size: 1rem;
+            }
+            footer nav{
+                height: fit-content;
+                margin-bottom: 2rem;
+            }
+            .about-containers, .contact-info-upper-container, .btn-container{
+                flex-wrap: wrap;
+            }
+            .contact-info-container{
+                margin: 0;
+            }
+            .contact-info-container p, .nav-links li a{
+                font-size: 1rem;
+            }
+            .experience-sub-title{
+                font-size: 1.25rem;
+            }
+            .logo{
+                font-size: 2rem;
+
+            }
+            .nav-links{
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            .section__pic-container{
+                width: auto;
+                height: 46vw;
+                justify-content: center;
+            }
+            .section__text__p2{
+                font-size: 1.25rem;
+            }
+            .title{
+                font-size: 2rem;
+            }
+            .text-container{
+                text-align: justify;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="desktop-nav">
+        <div class="logo logo-main">Welcome Ji!</div>
+        <div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="hamburger-nav">
+        <div class="logo logo-main">Welcome Ji!</div>
+        <div class="hamburger-menu">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-links">
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </div>
+        </div>
+    </nav>
+    <section id="profile">
+        <div class="section__pic-container">
+            <img src="Tarun2.jpg" alt="Profile-pic" class="profile-pic-main">
+        </div>
+        <div class="section__text">
+            <p class="section__text__p1">Ram Ram ji! I'm</p>
+            <h1 class="title">Tarun Tomar</h1>
+            <p class="section__text__p2">Frontend Developer</p>
+            <div class="btn-container">
+                <button class="btn-color-2 btn" onclick="window.open('Resume.pdf')">Download CV</button>
+                <button class="btn-color-1 btn" onclick="location.href='/#contact'">Contact Info</button>
+            </div>
+            <div class="socials-container">
+                <img src="https://lh5.googleusercontent.com/proxy/NRlpnkIzVNQLgAbYWsdT81JzU-5Rf3GmjAB2ZS3GH5UVhOP3_JRAkvZ1hbb8gnGQZ7ouhoBTBKqDyP7s57OFZqOcyg=w640"
+                    alt="my linked in profile" onclick="location.href='www.linkedin.com/in/taruntomar-05-'" height="40px">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="my github profile"
+                    onclick="location.href='https://github.com/tarunxtomar'" height="37px">
+                    <img src="insta-removebg-preview.png" alt="my insta profile"
+                    onclick="location.href='https://www.instagram.com/tarxunx/'" height="37px">
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <p class="section__text__p1">Get To Know More</p>
+        <h1 class="title">About Me</h1>
+        <div class="section-container">
+            <div class="section__pic-container">
+                <img src="aboutPic.jpg" alt="about pic" class="about-pic">
+            </div>
+            <div class="about-details-container">
+                <div class="about-containers">
+                    <div class="details-container">
+                        <img src="https://icon-library.com/images/achievement-icon-png/achievement-icon-png-29.jpg"
+                            alt="Experience icon" class="icon">
+                        <h3>Experiences</h3>
+                        <p>+2 years <br>Frontend Developement</p>
+                    </div>
+                    <div class="details-container">
+                        <img src="education-removebg-preview.png" alt="Education icon" class="icon">
+                        <h3>Educations</h3>
+                        <p>+1 year Diploma in Computer<br>BCA (Software Engineer)
+                        </p>
+                    </div>
+                </div>
+                <div class="text-container">
+                    <p>I am a dedicated frontend developer with two years of hands-on experience gained through extensive practice with my laptop. Currently pursuing a BCA degree, I have honed my skills in HTML, CSS, JavaScript, React, and Bootstrap, using my laptop as my creative tool. This practice has allowed me to create seamless and engaging user interfaces. Throughout this time, I actively contributed to the development of several projects, collaborating with cross-functional teams to deliver high-quality websites that fulfill client objectives. I am enthusiastic about continually expanding my expertise and contributing to dynamic projects that challenge me to grow as a frontend developer.</p>
+                </div>
+            </div>
+        </div>
+        <img src="https://static.thenounproject.com/png/634848-200.png" alt="arrow icon" class="icon arrow"
+            onclick="location.href='/#experience'">
+    </section>
+    <section id="experience">
+        <p class="section__text__p1">
+            Explore My
+        </p>
+        <h1 class="title">Experience</h1>
+        <div class="experience-details-container">
+            <div class="about-containers">
+                <div class="details-container">
+                    <h2 class="experience-sub-title">
+                        Frontend Developement
+                    </h2>
+                    <div class="article-container">
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>HTML</h3>
+                                <p>Experienced</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>CSS</h3>
+                                <p>Experienced</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>JavaScript</h3>
+                                <p>Basic</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>DOM.js</h3>
+                                <p>Experienced</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>BootStrap</h3>
+                                <p>Intermediate</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>React.js</h3>
+                                <p>Intermediate</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="details-container">
+                    <h2 class="experience-sub-title">
+                        Backend Developement
+                    </h2> 
+                    <div class="article-container">
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>PostgreSQL</h3>
+                                <p>Pending</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>Node JS</h3>
+                                <p>Intermediate</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>Express JS</h3>
+                                <p>Basic</p>
+                            </div>
+                        </article>
+                        <!-- <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>Git</h3>
+                                <p>Working-</p>
+                            </div>
+                        </article> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="https://static.thenounproject.com/png/634848-200.png" alt="arrow icon" class="arrow icon"
+            onclick="location.href='/#projects'">
+    </section>
+    <section id="projects">
+        <p class="section__text__p1">Browse my recent</p>
+        <h1 class="title">Projects</h1>
+        <div class="experience-details-container">
+            <div class="about-containers">
+                <div class="details-container color-container">
+                    <div class="article-container">
+                        <img src="https://th.bing.com/th/id/OIP.kQCE5Qy-D4Tf24AOVtbFEgHaFj?pid=ImgDet&rs=1"
+                            alt="Project 1" class="project-img">
+                    </div>
+                    <h2 class="experience-sub-title project-title">Project One</h2>
+                    <div class="btn-container">
+                        <button class="btn btn-color-2 prokect-btn"
+                            onclick="location.href= 'https://github.com/tarunxtomar/Netflix-HomePage-Clone.git'">GitHub</button>
+                        <button class="btn btn-color-2 prokect-btn" onclick="location.href= 'https://github.com/tarunxtomar'">Live
+                            Demo</button>
+                    </div>
+                </div>
+                <div class="details-container color-container">
+                    <div class="article-container">
+                        <img src="https://downloadpsd.cc/wp-content/uploads/image-1-48-740x555.jpg" alt="Project 2"
+                            class="project-img">
+                    </div>
+                    <h2 class="experience-sub-title project-title">Project Two</h2>
+                    <div class="btn-container">
+                        <button class="btn btn-color-2 prokect-btn"
+                            onclick="location.href= 'https://github.com/tarunxtomar/Sign-in_Sign-up_page.git'">GitHub</button>
+                        <button class="btn btn-color-2 prokect-btn" onclick="location.href= 'https://github.com/tarunxtomar'">Live
+                            Demo</button>
+                    </div>
+                </div>
+                <div class="details-container color-container">
+                    <div class="article-container">
+                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/19f01740503067.578245008cff3.jpg"
+                            alt="Project 3" class="project-img">
+                    </div>
+                    <h2 class="experience-sub-title project-title">Project Three</h2>
+                    <div class="btn-container">
+                        <button class="btn btn-color-2 prokect-btn"
+                            onclick="location.href= 'https://github.com/tarunxtomar/Amazon-clone.git'">GitHub</button>
+                        <button class="btn btn-color-2 prokect-btn" onclick="location.href= 'https://github.com/tarunxtomar'">Live
+                            Demo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="https://static.thenounproject.com/png/634848-200.png" alt="arrow icon" class="arrow icon"
+            onclick="location.href='/#contact'">
+    </section>
+    <section id="contact">
+        <p class="section__text__p1">Get in Touch</p>
+        <h1 class="title">Contact Me</h1>
+        <div class="contact-info-upper-container">
+            <div class="contact-info-container">
+                <img src="email-removebg-preview.png" alt="email icon" class="icon email-icon">
+                <p><a href="taruntomar930@gmail.com">taruntomar930@gmail.com</a></p>
+            </div>
+            <div class="contact-info-container">
+                <img src="https://lh5.googleusercontent.com/proxy/NRlpnkIzVNQLgAbYWsdT81JzU-5Rf3GmjAB2ZS3GH5UVhOP3_JRAkvZ1hbb8gnGQZ7ouhoBTBKqDyP7s57OFZqOcyg=w640"
+                    alt="linkedin icon" class="icon " height="20px">
+                <p><a href="www.linkedin.com/in/taruntomar-05-">LinkedIn</a></p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <nav>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <p class="footer-p">Copyright &#169; 2023 Tarun Tomar. All Right Reserved</p>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector(".menu-links");
+            const icon = document.querySelector(".hamburger-icon");
+            menu.classList.toggle("open");
+            icon.classList.toggle("open");
+        }
+    </script>
+
+</html>
