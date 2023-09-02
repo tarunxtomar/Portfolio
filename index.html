@@ -183,12 +183,16 @@
             height: 80vh;
             cursor: default;
         }
+         .profile-pic-main{
+            border-radius: 50%;
+           box-shadow: 9px 9px 10px rgb(0, 0, 0, 0.7);
+        }
         #profile .profile-pic-main:hover{
             scale: 1.02;
-            transition: all ease 0.3s;
+            transition: all ease 0.4s;
             box-shadow: 8px 8px 8px rgb(53, 53, 53);
         }
-
+        
         .section__pic-container {
             display: flex;
             height: 400px;
@@ -223,15 +227,23 @@
         #profile .title{
             -webkit-text-stroke: 2px #000;
             color: transparent;
+             text-shadow: 5px 6px 5px rgb(161, 134, 197);
         }
-
-
         .socials-container {
             height: 2rem;
             display: flex;
             justify-content: center;
             margin: 1rem;
             gap: 1rem;
+        }
+          .socials-container img{
+            border-radius: 100%;
+            box-shadow: 3px 3px 5px rgb(0, 0, 0, 0.5);
+        }
+        .socials-container img:hover{
+            scale: 1.1;
+            box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
         }
 
         /* icons */
@@ -275,6 +287,9 @@
             border: none;
             color: white;
         }
+         .btn-color-1{
+            box-shadow: 4px 4px 12px #ff8080;
+        }
 
         .btn-color-1:hover {
             /* background-color: rgb(0, 0, 0); */
@@ -311,6 +326,9 @@
         .about-details-container {
             display: flex;
         }
+         .details-container , .contact-info-upper-container{
+            box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.3);
+        } 
 
         .about-pic {
             border-radius: 2rem;
@@ -345,10 +363,6 @@
             height: 400px;
             width: 400px;
             margin: auto 0;
-        }
-        .profile-pic-main{
-            border-radius: 50%;
-            box-shadow: 4px 4px 10px rgb(53, 53, 53);
         }
 
 
@@ -578,7 +592,7 @@
 </head>
 
 <body>
-    <nav class="desktop-nav">
+    <nav class="desktop-nav Har-Har-Mahadev">
         <div class="logo logo-main">Welcome Ji!</div>
         <div>
             <ul class="nav-links">
